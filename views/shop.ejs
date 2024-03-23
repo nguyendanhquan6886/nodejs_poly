@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Shop page</h1>
+    <nav class="main-header__nav">
+      <ul class="main-header__item-list">
+        <li class="main-header__item">
+          <a class="active" href="/">Trang chủ</a>
+        </li>
+        <li class="main-header__item">
+          <a class="active" href="/shop">Sản phẩm</a>
+        </li>
+        <li class="main-header__item"><a href="/addnew">Thêm sản phẩm</a></li>
+      </ul>
+    </nav>
+    <!-- <% products.map((product)=>{ return ` %>
+    <article class="card product-item">
+      <header class="card__header">
+        <h1 class="product__title"><%= product.title %></h1>
+      </header>
+      <div class="card__image">
+        <img src="img/<%= product.imageURL %>" alt="A Book" />
+      </div>
+      <div class="card__content">
+        <h2 class="product__price">$<%= product.price %></h2>
+        <p class="product__description"><%=product.description %></p>
+      </div>
+      <div class="card__actions">
+        <button class="btn">Add to Cart</button>
+      </div>
+    </article>
+
+    <% `}).join(" ")%> -->
+    <% for (let product of products) { %>
+    <article class="card product-item">
+      <header class="card__header">
+        <h1 class="product__title"><%= product.title %></h1>
+      </header>
+      <div class="card__image">
+        <a href="/product/<%= product.id %>">
+          <img src="/img/<%= product.imageURL %>" alt="A Book"
+        /></a>
+      </div>
+      <div class="card__content">
+        <h2 class="product__price">$<%= product.price %></h2>
+        <p class="product__description"><%=product.description %></p>
+      </div>
+      <div class="card__actions">
+        <button class="btn">Add to Cart</button>
+      </div>
+    </article>
+    <% } %>
+  </body>
+</html>
