@@ -3,7 +3,7 @@ import Product from "../model/product.js";
 class Productcontroller {
   async getAll(req, res) {
     try {
-      const data = await Product.find({});
+      const data = await Product.find({}).populate("refCate");
       res.status(200).json({
         message: "Get all successfully",
         data: data,

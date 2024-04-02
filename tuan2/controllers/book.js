@@ -1,4 +1,5 @@
 import Book from "../model/bookmodel.js";
+import { createvalidate, updatevalidate } from "../validatetion/book.js";
 class BooksController {
   // Get all books
   async getAllBooks(req, res) {
@@ -31,6 +32,13 @@ class BooksController {
   }
   async getUpdatebook(req, res) {
     try {
+      const { error } = updatevalidate.validate(req.body, {
+        abortEarly: false,
+      });
+      if (error) {
+        const errors = error.details.map((err) => err.message);
+        return res.status(400).json({ errors: errors });
+      }
       const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
       });
@@ -57,6 +65,13 @@ class BooksController {
   async getAddbook(req, res) {
     // res.send("Get add book");
     try {
+      const { error } = createvalidate.validate(req.body, {
+        abortEarly: false,
+      });
+      if (error) {
+        const errors = error.details.map((err) => err.message);
+        return res.status(400).json({ errors: errors });
+      }
       await Book.create(req.body);
       // title: "Book mau",
       // description: "Sản phẩm chất lượng",

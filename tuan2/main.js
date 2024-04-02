@@ -10,7 +10,7 @@ app.use(
 );
 app.use(express.json());
 const port = process.env.PORT || 3000;
-const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/book";
+const dbUrl = "mongodb://127.0.0.1:27017/book";
 connectMongoDB(dbUrl);
 routes(app);
 
